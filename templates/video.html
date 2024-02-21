@@ -1,0 +1,96 @@
+{% load static %}
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+
+    <title>Video darslik</title>
+    <style>
+        .asosiy{
+            display: flex;
+        }
+        .left_1{
+
+            width: 18%;
+            height: 100vh;
+        }
+        .right_1{
+            /*border: 1px solid black;*/
+            width: 82%;
+            height: 100vh;
+
+
+        }
+        .tepa{
+            width: 100%;
+            height: 30%;
+
+        }
+        .tepa img{
+            width: 100%;
+            height: 100%;
+        }
+        .test_t{
+            border: 1px solid white;
+            width: 100%;
+            height: 30vh;
+            background-image: url("https://educationhorizons.com/wp-content/uploads/2022/11/reporting-challenges-banner-1600x475px.jpg");
+            background-size: cover;
+            background-repeat: no-repeat;
+        }
+        .test_p{
+            /*border: 1px solid black;*/
+            width: 100%;
+            height: 70vh;
+            overflow-y: scroll;
+        }
+    </style>
+</head>
+<body>
+    <div class="asosiy">
+        <div class="left_1">
+            <div class="tepa">
+                <img src="https://baxtiyor.uz/wp-content/uploads/2019/02/Elektron-darslik.jpg" alt="">
+            </div>
+            <div class="past">
+                <div class="list-group" style="font-size: 20px;">
+                    <br>
+                    <a href="{% url 'home' %}" class="list-group-item list-group-item-action"><span class="glyphicon glyphicon-home" style="padding: 10px; color:darkcyan"></span>Bosh sahifa</a>
+                    <a href="{% url 'books' %}" class="list-group-item list-group-item-action"><span class="glyphicon glyphicon-list-alt" style="padding: 10px; color:darkcyan"></span>Fanlar</a>
+                    <a href="{% url 'video' %}" class="list-group-item list-group-item-action"><span class="glyphicon glyphicon-facetime-video" style="padding: 10px; color:darkcyan"></span>Video darsliklar</a>
+                    <a href="#" class="list-group-item list-group-item-action"><span class="glyphicon glyphicon-pencil" style="padding: 10px; color:darkcyan"></span>Test</a>
+                  </div>
+            </div>
+
+        </div>
+        <div class="right_1">
+            <div class="test_t" style="text-align: center; height: 30vh; background-color:azure">
+                <div style="margin: 55px; color:darkcyan">
+                    <p style="font-size: 50px;">VIDEO DARSLIKLAR</p>
+                </div>
+
+            </div>
+
+            <div class="test_p">
+                <div class="container mt-5">
+                  <div class="row">
+                      {% for video in videos %}
+                      <div class="col-sm-4">
+                            <video width="360" height="210" style="border: 1px solid darkgray; border-radius: 10px; box-shadow: 10px 10px 20px 0 rgba(0, 0, 0, 0.2);" controls>
+                                <source src="{{ video.video.url }}" type="video/mp4">
+                            </video>
+                            <b>{{ video.name }}</b>
+                      </div>
+                      {% endfor %}
+                  </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</body>
+</html>
