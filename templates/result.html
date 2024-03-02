@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+
+
+    {% block content %}
+
+    <div class="container ">
+
+        <div class="card-columns" style="padding: 10px; margin: 20px;">
+            <div class="card" align="centre " style="width: 32rem">
+
+                <div class="card-body">
+                    <h5 class="card-title">Vaqt: {{score}}</h5>
+
+                    <p class="card-text">Foiz: {{percent}}%</p>
+                    <p class="card-text">Sarflangan vaqt: {{time}} seconds</p>
+                    <p class="card-text">To'g'ri javoblar: {{correct}}</p>
+                    <p class="card-text">Nato'g'ri javoblar: {{wrong}}</p>
+                    <p class="card-text">Jami savollar: {{total}}</p>
+
+                </div>
+            </div>
+        </div>
+
+    </div>
+
+    {% endblock %}
+</body>
+</html>

@@ -1,12 +1,7 @@
-import os
-
-import PyPDF2
-from django.contrib.auth import authenticate, login, logout
-from django.contrib.auth.decorators import login_required
 from django.http import HttpResponse
+from django.contrib.auth import authenticate, login, logout
 from django.shortcuts import render, redirect
-
-from conf import settings
+from django.contrib.auth.decorators import login_required
 from polls.models import Video, Book
 from users.models import MyUser
 
@@ -48,7 +43,7 @@ def login_view(request):
 
 @login_required
 def home(request):
-    if request.user.is_staff:
+    if request.user.is_superuser:
         return redirect('super_user')
     else:
         return render(request, 'home.html')
@@ -60,7 +55,7 @@ def students(request):
     return render(request, 'students.html', {'users': users})
 
 
-def upload_video(request):
+def upload(request):
     if request.method == 'POST' and request.FILES['video']:
         video_file = request.FILES['video']
         video_name = request.POST.get('video_name')
@@ -69,7 +64,7 @@ def upload_video(request):
     return render(request, 'upload.html')
 
 
-def upload_book(request):
+def book(request):
     if request.method == 'POST' and request.FILES['book_pdf']:
         book_pdf = request.FILES['book_pdf']
         book_name = request.POST.get('book_name')
@@ -80,10 +75,10 @@ def upload_book(request):
 
 def view_pdf(request):
     books = Book.objects.all()
-    return render(request, 'books.html', {'books': books})
+    return render(request, 'view_pdf.html', {'books': books})
 
 
-def video_list(request):
+def video(request):
     videos = Video.objects.all()
     return render(request, 'video.html', {'videos': videos})
 
@@ -99,3 +94,4 @@ def logout_view(request):
 
 def uploads(request):
     return render(request, 'uploads.html')
+

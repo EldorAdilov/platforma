@@ -22,7 +22,7 @@ class MyUserManager(BaseUserManager):
             password=password,
             phone_number=phone_number
         )
-        user.is_staff = True
+
         user.is_superuser = True
         user.is_admin = True
         user.save(using=self._db)
@@ -43,7 +43,7 @@ class MyUser(AbstractBaseUser):
         blank=True,
         null=True,
     )
-    is_staff = models.BooleanField(default=True)
+
     is_active = models.BooleanField(default=True)
     is_admin = models.BooleanField(default=False)
     is_superuser = models.BooleanField(default=False)
