@@ -1,6 +1,8 @@
 from django.db import models
 from django.utils import timezone
 
+from users.models import MyUser
+
 
 # Create your models here.
 
@@ -23,3 +25,21 @@ class Video(models.Model):
         return self.name
 
 
+class QuizAttempt(models.Model):
+    objects = None
+    user = models.ForeignKey(MyUser, on_delete=models.PROTECT)
+    score = models.IntegerField()
+    date_attempted = models.DateTimeField(auto_now_add=True)
+
+
+class Quiz(models.Model):
+    objects = None
+    question = models.CharField(max_length=500)
+    option1 = models.CharField(max_length=20)
+    option2 = models.CharField(max_length=20)
+    option3 = models.CharField(max_length=20)
+    option4 = models.CharField(max_length=20)
+    answer = models.CharField(max_length=20)
+
+    def __str__(self):
+        return self.question

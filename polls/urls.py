@@ -3,7 +3,7 @@ from django.conf import settings
 from django.urls import path
 
 from polls.views import (index, registration, login_view, home, super_users, students, upload, video, book, view_pdf,
-                         uploads)
+                         uploads, add_question, quiz, result, superuser_results)
 
 urlpatterns = [
     path("polls/", index, name="index"),
@@ -17,4 +17,8 @@ urlpatterns = [
     path('book/', book, name="book"),
     path('view_pdf/', view_pdf, name="view_pdf"),
     path('uploads/', uploads, name="uploads"),
+    path('add_question/', add_question, name="add_question"),
+    path('quiz/', quiz, name="quiz"),
+    path('result/', result, name='result'),
+    path('superuser_results/', superuser_results, name='superuser_results'),
 ] + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)

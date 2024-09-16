@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Add Question</title>
+    <style>
+        .styled-form {
+            background-color: #f9f9f9;
+            padding: 20px;
+            border-radius: 5px;
+            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+            width: 300px;
+            margin: 0 auto;
+        }
+
+        .styled-form label {
+            display: block;
+            margin-bottom: 10px;
+        }
+
+        .styled-form input[type="text"],
+        .styled-form textarea {
+            width: calc(100% - 22px);
+            padding: 10px;
+            margin-bottom: 10px;
+            border: 1px solid #ccc;
+            border-radius: 4px;
+        }
+
+        .styled-button {
+            background-color: #4CAF50;
+            color: white;
+            padding: 10px 20px;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+        }
+
+        .styled-button:hover {
+            background-color: #45a049;
+        }
+
+        .hide {
+            display: none;
+        }
+    </style>
+</head>
+<body>
+
+<form method="post" action="{% url 'add_question' %}" class="styled-form">
+    {% csrf_token %}
+    {% for form in formset %}
+    <div id="main-form">
+        <label for="question">Savol matni:</label>
+        <input type="text" id="question" name="question">
+
+        <label for="option1">variant 1:</label>
+        <input type="text" id="option1" name="option1">
+
+        <label for="option2">variant 2:</label>
+        <input type="text" id="option2" name="option2">
+
+        <label for="option3">variant 3:</label>
+        <input type="text" id="option3" name="option3">
+
+        <label for="option4">variant 4:</label>
+        <input type="text" id="option4" name="option4">
+
+        <label for="answer">to'g'ri javob:</label>
+        <input type="text" id="answer" name="answer">
+
+        <button type="button" class="styled-button" onclick="addQuestion()">Savol qo'shish</button>
+    </div>
+    <button type="submit" class="styled-button hide" id="save-button">Saqlash</button>
+</form>
+
+<script>
+    function addQuestion() {
+        var form = document.getElementById('main-form');
+        var clone = form.cloneNode(true);
+        form.parentNode.insertBefore(clone, form.nextSibling);
+        document.getElementById('save-button').classList.remove('hide'); // Saqlash tugmasini ko'rsatish
+    }
+</script>
+
+</body>
+</html>

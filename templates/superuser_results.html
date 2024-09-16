@@ -1,0 +1,33 @@
+<!-- templates/quiz/superuser_results.html -->
+<!DOCTYPE html>
+<html lang="uz">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Superuser Natijalari</title>
+</head>
+<body>
+
+<h1>Superuser Natijalari</h1>
+
+<table border="1">
+    <thead>
+        <tr>
+            <th>User</th>
+            <th>Score</th>
+            <th>Date Attempted</th>
+        </tr>
+    </thead>
+    <tbody>
+        {% for attempt in quiz_attempts %}
+        <tr>
+            <td>{{ attempt.user.username }}</td>
+            <td>{{ attempt.score }}</td>
+            <td>{{ attempt.date_attempted }}</td>
+        </tr>
+        {% endfor %}
+    </tbody>
+</table>
+
+</body>
+</html>

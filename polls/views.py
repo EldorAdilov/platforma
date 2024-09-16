@@ -1,8 +1,9 @@
-from django.http import HttpResponse
 from django.contrib.auth import authenticate, login, logout
-from django.shortcuts import render, redirect
 from django.contrib.auth.decorators import login_required
-from polls.models import Video, Book
+from django.shortcuts import render, redirect
+
+from polls.forms import QuizForm
+from polls.models import Video, Book, Quiz, QuizAttempt
 from users.models import MyUser
 
 
@@ -51,7 +52,6 @@ def home(request):
 
 def students(request):
     users = MyUser.objects.filter(is_admin=0).values('id', 'username', 'phone_number')
-
     return render(request, 'students.html', {'users': users})
 
 
@@ -94,4 +94,53 @@ def logout_view(request):
 
 def uploads(request):
     return render(request, 'uploads.html')
+
+
+def add_question(request):
+    if request.method == 'POST':
+        formset = QuizForm(request.POST)
+        if formset.is_valid():
+            formset.save()
+            return redirect('/')
+    else:
+        formset = QuizForm()
+    return render(request, 'add_question.html', {'form': formset})
+
+
+def result():
+    pass
+
+
+def quiz(request):
+    if request.method == 'POST':
+        score = 0
+        total = 0
+        user_name = request.user.username
+        questions = Quiz.objects.all()
+        context = {'user_name': user_name, 'questions': questions}
+
+        for question in Quiz.objects.all():
+            total += 1
+            user_answer = request.POST.get(str(question.id))
+            if user_answer == question.answer:
+                score += 1
+
+        percent = round(((score / total) * 100), 1)
+        QuizAttempt.objects.create(user=request.user, score=score)
+        context.update({'score': score, 'percent': percent, 'total': total})
+        return render(request, 'result.html', context)
+    else:
+        user_name = request.user.username
+        questions = Quiz.objects.all()
+        context = {'user_name': user_name, 'questions': questions}
+        return render(request, 'quiz.html', context)
+
+
+def superuser_results(request):
+    if request.user.is_superuser:
+        quiz_attempts = QuizAttempt.objects.all()
+        context = {'quiz_attempts': quiz_attempts}
+        return render(request, 'superuser_results.html', context)
+    else:
+        return redirect('quiz')
 

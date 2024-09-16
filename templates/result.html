@@ -1,34 +1,19 @@
+<!-- templates/quiz/result.html -->
 <!DOCTYPE html>
-<html lang="en">
+<html lang="uz">
 <head>
     <meta charset="UTF-8">
-    <title>Title</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Result</title>
 </head>
 <body>
 
+<h1>Test natijalari</h1>
 
-    {% block content %}
+<p>Sizning test natijalaringiz:</p>
+<p>Jami savollar soni: {{ total }}</p>
+<p>To'g'ri javoblar soni: {{ score }}</p>
+<p>Hisobingiz: {{ percent }}%</p>
 
-    <div class="container ">
-
-        <div class="card-columns" style="padding: 10px; margin: 20px;">
-            <div class="card" align="centre " style="width: 32rem">
-
-                <div class="card-body">
-                    <h5 class="card-title">Vaqt: {{score}}</h5>
-
-                    <p class="card-text">Foiz: {{percent}}%</p>
-                    <p class="card-text">Sarflangan vaqt: {{time}} seconds</p>
-                    <p class="card-text">To'g'ri javoblar: {{correct}}</p>
-                    <p class="card-text">Nato'g'ri javoblar: {{wrong}}</p>
-                    <p class="card-text">Jami savollar: {{total}}</p>
-
-                </div>
-            </div>
-        </div>
-
-    </div>
-
-    {% endblock %}
 </body>
 </html>
