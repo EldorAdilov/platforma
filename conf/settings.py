@@ -26,7 +26,7 @@ SECRET_KEY = 'django-insecure-&7f$59=$1!o@oyu!=0-!(hl6bjm%pl6v+5are7jtys+4web9gi
 DEBUG = True
 
 
-ALLOWED_HOSTS = ['platforma.onrender.com', 'localhost', '127.0.0.1']
+ALLOWED_HOSTS = ['platforma-1.onrender.com', 'localhost', '127.0.0.1']
 
 
 # Application definition
@@ -80,17 +80,15 @@ WSGI_APPLICATION = 'conf.wsgi.application'
 # https://docs.djangoproject.com/en/5.0/ref/settings/#databases
 
 DATABASES = {
-    'default': {
-        'ENGINE': 'django.db.backends.postgresql',
-        'NAME': 'eldor',  # Ma'lumotlar bazasi nomi
-        'USER': 'eldor_user',  # Foydalanuvchi nomi
-        'PASSWORD': 'lls92lowVht4gpiTIsLl4YTuwKeM82k0',  # Parol
-        'HOST': 'dpg-crk8plm8ii6s73ejgjlg-a',  # Xost nomi
-        'PORT': '5432',  # Port
+    "default": {
+        "ENGINE": "django.db.backends.postgresql",
+        "NAME": "talim",
+        "USER": "postgres",
+        "PASSWORD": "Eldor1999",
+        "HOST": "localhost",
+        "PORT": "5432",
     }
 }
-
-
 # Password validation
 # https://docs.djangoproject.com/en/5.0/ref/settings/#auth-password-validators
 
