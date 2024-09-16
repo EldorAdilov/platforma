@@ -80,15 +80,16 @@ WSGI_APPLICATION = 'conf.wsgi.application'
 # https://docs.djangoproject.com/en/5.0/ref/settings/#databases
 
 DATABASES = {
-    "default": {
-        "ENGINE": "django.db.backends.postgresql",
-        "NAME": "talim",
-        "USER": "postgres",
-        "PASSWORD": "Eldor1999",
-        "HOST": "localhost",
-        "PORT": "5432",
+    'default': {
+        'ENGINE': 'django.db.backends.postgresql',
+        'NAME': 'eldor',  # Ma'lumotlar bazasi nomi
+        'USER': 'eldor_user',  # Foydalanuvchi nomi
+        'PASSWORD': 'lls92lowVht4gpiTIsLl4YTuwKeM82k0',  # Parol
+        'HOST': 'dpg-crk8plm8ii6s73ejgjlg-a',  # Xost nomi
+        'PORT': '5432',  # Port
     }
 }
+
 
 # Password validation
 # https://docs.djangoproject.com/en/5.0/ref/settings/#auth-password-validators
